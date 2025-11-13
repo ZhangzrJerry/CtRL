@@ -2,7 +2,7 @@ import os
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from cartpole import CartPole, rk4_step, saturate
+from cartpole import CartPole
 from visualization import CartPoleVisualizer
 from tqdm import tqdm
 from lqr import discretize, finite_horizon_lqr
@@ -46,13 +46,13 @@ def main():
     for i in tqdm(range(steps), desc="Simulating"):
         dx = x - x_eq
         u = -Ks[i].dot(dx)[0]
-        u = saturate(u, umax)
+        u = np.clip(u, -umax, umax)
 
         states.append(x.copy())
         controls.append(u)
 
         # integrate
-        x = rk4_step(cart.dynamics, x, u, dt)
+        x = cart.discrete_step(x, u, dt)
 
     states = np.array(states)
     controls = np.array(controls)
