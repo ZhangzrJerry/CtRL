@@ -19,4 +19,4 @@ python main.py --epoches 500
 
 ## 完成效果
 
-TBA
+[![DQN Cartpole](./viz.mp4)](./viz.mp4)
