@@ -1,4 +1,4 @@
-# Chapter 4: Trajectory Optimization
+# Chapter 3: 轨迹优化
 
 项目中包括以下文件
 
